@@ -4,9 +4,9 @@ using namespace std;
 
 #define MAX_STRING 10
 
+string s[MAX_STRING];
+
 class Board {
-public:
-	static string s[MAX_STRING];
 public:
 	static int index;
 	static void add(const char* u);
@@ -23,6 +23,7 @@ void Board::print() {
 	for (int i = 0; i < index; i++) {
 		cout << i << ": " << s[i] << endl;
 	}
+	cout << endl;
 }
 
 int main() {
