@@ -4,20 +4,18 @@ using namespace std;
 
 #define MAX_STRING 10
 
-static string s[MAX_STRING];
 
 class Board {
 public:
+	static string s[MAX_STRING];
 	static int index;
 	static void add(const char* u);
 	static void print();
-}
-
+};
+string Board::s[] = { "", };
 int Board::index = 0;
 void Board::add(const char* u) {
-	for (int i = 0; i < MAX_STRING; i++) {
-		string Board::s[i] = { '\0', };
-	}
+	
 	string ss(u);
 	s[index] = ss;
 	index++;
