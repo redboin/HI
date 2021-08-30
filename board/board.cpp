@@ -27,7 +27,6 @@ void Board::print() {
 	}
 	cout << endl;
 }
-
 int main() {
 	Board::add("중간고사는 감독 없는 자율 시험입니다.");
 	Board::add("코딩 라운지 많이 이용해 주세요.");
