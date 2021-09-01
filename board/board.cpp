@@ -9,16 +9,19 @@ class Board {
 public:
 	static string s[MAX_STRING];
 	static int index;
+
+	static char ii;
 	static void add(string u);
 	static void print();
 };
-string Board::s[] = { "", };
-int Board::index = 0;
+char Board::ii = {};
+string Board::s[] = {};
+int Board::index = {};
 void Board::add(string u) {
 	s[index++] = u;
 }
 void Board::print() {
-	cout << "********** 게시판입니다 **********\n";	
+	cout << "********** 게시판입니다 **********\n";
 	for (int i = 0; i < index; i++) {
 		cout << i << ": " << s[i] << endl;
 	}
