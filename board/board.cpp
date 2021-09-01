@@ -9,16 +9,13 @@ class Board {
 public:
 	static string s[MAX_STRING];
 	static int index;
-	static void add(const char* u);
+	static void add(string u);
 	static void print();
 };
 string Board::s[] = { "", };
 int Board::index = 0;
-void Board::add(const char* u) {
-	
-	string ss(u);
-	s[index] = ss;
-	index++;
+void Board::add(string u) {
+	s[index++] = u;
 }
 void Board::print() {
 	cout << "********** 게시판입니다 **********\n";	
