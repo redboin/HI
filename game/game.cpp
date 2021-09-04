@@ -3,21 +3,24 @@
 #include<ctime>
 #include <string>
 #include <Windows.h>
-
+#include <conio.h>
 using namespace std;
+
 #define MAX_HP 100
 #define MAX_ATK 20
 #define MAX_DFS 10
 #define MAX_ENERGY 100
+#define MAX_POTION 3
 
 class Game {
 private:
 	string name;
 	int atk;
 	int dfs;
-	int HP;
 	int energy;
+	int potion;
 public:
+	static int HP;
 	Game(int h, int a, int d, int e);
 	void Stat(int eHp, int eAtk, int eDfs, int mEhp, string eName);
 	void Damage(int dmg, string eName);
@@ -25,7 +28,7 @@ public:
 	bool live();
 	void play(int *eHp, int eAtk, int eDfs, string eName);
 };
-
+int Game::HP = MAX_HP;
 Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 {
 	cout << "이름을 입력해 주세요: ";
@@ -34,47 +37,38 @@ Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 	atk = a;
 	dfs = d;
 	energy = e;
+	potion = MAX_POTION;
 }
 void Game::Stat(int eHp, int eAtk, int eDfs, int mEhp, string eName){
-	cout << "이름: <" << name << '>' << endl;
+	cout << "<" << name << '>' << endl;
 	cout << "생명력: ";
-	int i;
-	int div= MAX_HP;
-	while (div / 100) {
-		div /= 10;
-	}
-	for (i = 0; i < HP / div; i++) {
+	float i;
+	for (i = (float)(MAX_HP / 10); i < (float)HP; i+= (float)(MAX_HP / 10)) {
 		cout << "♥";
 	}
-	for (i; i < 10; i++) {
+	for (i; i < (float)MAX_HP; i += MAX_HP / 10) {
 		cout << "♡";
 	}
 	cout << HP << '/' << MAX_HP << endl;
 	cout << "에너지: ";
-	div = MAX_ENERGY;
-	while (div / 100) {
-		div /= 10;
-	}
-	for (i = 0; i < energy / div; i++) {
+	for (i = MAX_ENERGY / 10; i < (float)energy; i += (float)(MAX_ENERGY / 10)) {
 		cout << "■";
 	}
-	for (i; i < div; i++) {
+	for (i; i < (float)MAX_ENERGY; i+=(float)(MAX_HP / 10)) {
 		cout << "□";
 	}
 	cout << energy << '/' << MAX_ENERGY << endl;
 
 	cout << "공격력: " << atk << endl;
-	cout << "방어력: " << dfs << endl << endl;
-	cout << eName << "\n";
+	cout << "방어력: " << dfs << endl;
+	cout << "포션 갯수: " << potion << endl << endl;
+	cout << '<' << eName << ">\n";
 	cout << "생명력: ";
-	div = mEhp;
-	while (div / 10) {
-		div /= 10;
-	}
-	for (i = 0; i < eHp / div; i++) {
+	
+	for (i = (float)(mEhp / 10); i < (float)eHp ; i+= (float)(mEhp / 10)) {
 		cout << "♥";
 	}
-	for (i; i < 10; i++) {
+	for (i; i < (float)mEhp; i+=(float)(mEhp/10)) {
 		cout << "♡";
 	}
 	cout << eHp << '/' << mEhp << endl;
@@ -103,13 +97,16 @@ void Game::play(int* eHp, int eAtk, int eDfs, string eName){
 	cout << "<" << name << ">\n";
 	cout << "[1] <공격> 에너지 소모: " << MAX_ENERGY / 5 << endl;
 	cout << "[2] <막기> 에너지 소모: " << MAX_ENERGY / 10 << endl;
-	cout << "[3] <쉬기> 에너지 "<< MAX_ENERGY / 5 << "회복\n";
-	cout << "[4] <포기>\n";
-	int input;
+	cout << "[3] <쉬기> 에너지 "<< MAX_ENERGY / 4 << "회복\n";
+	cout << "[4] <포션사용> HP " << MAX_HP / 4 << "회복\n";
+	cout << "[5] <포기>\n";
 	int engre = MAX_ENERGY / 10;
 	while (1) {
-		cout << "선택해 주세요: ";
-		cin >> input;
+		int input = 10;
+		while (input < 1 || input > 5) {
+			cout << "선택해 주세요: ";
+			cin >> input;
+		}
 		switch (input)
 		{
 		case 1:
@@ -138,12 +135,31 @@ void Game::play(int* eHp, int eAtk, int eDfs, string eName){
 			break;
 		case 3:
 			Damage(eAtk, eName);
-			engre *= 2;
+			energy += MAX_ENERGY / 4;
+			if (energy > MAX_ENERGY) energy = MAX_ENERGY;
 			return;
 		case 4:
+			if (potion <= 0) cout << "남은 포션이 없습니다!\n";
+			else if (HP == MAX_HP) cout << "HP가 최대 입니다!\n";
+			else if (HP + MAX_HP / 4 > MAX_HP) {
+				cout << "-HP " << HP + MAX_HP / 4 - MAX_HP<< "회복-\n";
+				HP = HP + MAX_HP / 4 - MAX_HP;
+				Damage(eAtk, eName);
+				potion--;
+				return;
+			}
+			else {
+				cout << "-HP " << MAX_HP / 4 << "회복-\n";
+				HP += MAX_HP / 4;
+				Damage(eAtk, eName);
+				potion--;
+				return;
+			}
+			break;
+		case 5:
 			char yorn;
-			cout << "포기하시겠 습니까?(y) ";
-			do 
+			cout << "포기하시겠습니까?(y) ";
+			do
 			{
 				cin >> yorn;
 			} while (yorn != 'y' && yorn != 'Y');
@@ -151,6 +167,8 @@ void Game::play(int* eHp, int eAtk, int eDfs, string eName){
 				HP -= HP;
 				return;
 			}
+		default:
+			break;
 		}
 	}
 }
@@ -170,15 +188,13 @@ int main()
 	int mEhp = eHp;
 	cout << "앗 야생의 " << ee << "(이)가 나타났다!\n";
 	cout << "press ant key";
-	getchar();
-	getchar();
+	_getch();
 	system("cls");
 	while (p1.live() && eHp > 0) {
 		p1.Stat(eHp, eAtk, eDfs, mEhp, ee);
 		p1.play(&eHp, eAtk, eDfs, ee);
 		cout << "press ant key";
-		getchar();
-		getchar();
+		_getch();
 		system("cls");
 	}
 	if (!p1.live()) cout << "사망하셨습니다!\n";
