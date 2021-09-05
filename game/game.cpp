@@ -75,7 +75,7 @@ void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	cout << "공격력: " << eAtk << endl;
 	cout << "방어력: " << eDfs << endl << endl;
 	cout << "--------------------\n";
-}
+} 
 void Game::Damage(int dmg, string eName) {
 	int hit = dmg - dfs;
 	if (hit < 0) hit = 0;
