@@ -6,7 +6,7 @@
 #include <conio.h>
 using namespace std;
 
-#define MAX_HP 100
+#define MAX_HP 200
 #define MAX_ATK 20
 #define MAX_DFS 10
 #define MAX_ENERGY 100
@@ -54,7 +54,7 @@ void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	for (i = 0.0f; i < energy; i += MAX_ENERGY / 10) {
 		cout << "бс";
 	}
-	for (i; i < MAX_ENERGY; i+=MAX_HP / 10) {
+	for (i; i < MAX_ENERGY; i+=MAX_ENERGY / 10) {
 		cout << "бр";
 	}
 	cout << energy << '/' << MAX_ENERGY << endl;
