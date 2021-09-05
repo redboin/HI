@@ -65,10 +65,10 @@ void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	cout << '<' << eName << ">\n";
 	cout << "생명력: ";
 	
-	for (i = 0.0f; i < eHp; i+= (float)mEhp / 10) {
+	for (i = 0.0f; i < eHp - 1.0f; i+= (float)mEhp / 10) {
 		cout << "♥";
 	}
-	for (i; i < mEhp; i+= (float)mEhp/10) {
+	for (i; i < mEhp - 1.0f; i+= (float)mEhp/10) {
 		cout << "♡";
 	}
 	cout << eHp << '/' << mEhp << endl;
@@ -142,7 +142,7 @@ void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 			else if (HP == MAX_HP) cout << "HP가 최대 입니다!\n";
 			else if (HP + MAX_HP / 4 > MAX_HP) {
 				cout << "-HP " << HP + MAX_HP / 4 - MAX_HP<< "회복-\n";
-				HP = HP + MAX_HP / 4 - MAX_HP;
+				HP = MAX_HP;
 				Damage(eAtk, eName);
 				potion--;
 				return;
@@ -181,9 +181,10 @@ int main()
 	float eHp = rand() % MAX_HP / 2 + 50;
 	int eAtk = rand() % MAX_ATK / 3 + MAX_ATK;
 	int eDfs = rand() % MAX_DFS / 2 + MAX_DFS / 2;
+	eHp = 100.0f;
 	float mEhp = eHp;
 	cout << "앗 야생의 " << ee << "(이)가 나타났다!\n";
-	cout << "press ant key";
+	cout << "press any key";
 	_getch();
 	system("cls");
 	while (p1.live() && eHp > 0) {
