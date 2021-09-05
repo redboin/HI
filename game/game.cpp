@@ -6,7 +6,7 @@
 #include <conio.h>
 using namespace std;
 
-#define MAX_HP 200
+#define MAX_HP 150
 #define MAX_ATK 20
 #define MAX_DFS 10
 #define MAX_ENERGY 100
