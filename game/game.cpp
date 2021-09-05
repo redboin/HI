@@ -17,18 +17,18 @@ private:
 	string name;
 	int atk;
 	int dfs;
-	int energy;
+	float energy;
 	int potion;
 public:
-	static int HP;
+	static float HP;
 	Game(int h, int a, int d, int e);
-	void Stat(int eHp, int eAtk, int eDfs, int mEhp, string eName);
+	void Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName);
 	void Damage(int dmg, string eName);
 	int attack(int eDfs, string eName);
 	bool live();
-	void play(int *eHp, int eAtk, int eDfs, string eName);
+	void play(float *eHp, int eAtk, int eDfs, string eName);
 };
-int Game::HP = MAX_HP;
+float Game::HP = MAX_HP;
 Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 {
 	cout << "이름을 입력해 주세요: ";
@@ -39,22 +39,22 @@ Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 	energy = e;
 	potion = MAX_POTION;
 }
-void Game::Stat(int eHp, int eAtk, int eDfs, int mEhp, string eName){
+void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	cout << "<" << name << '>' << endl;
 	cout << "생명력: ";
 	float i;
-	for (i = (float)(MAX_HP / 10); i < (float)HP; i+= (float)(MAX_HP / 10)) {
+	for (i = 0.0f; i < HP; i+= (MAX_HP / 10)) {
 		cout << "♥";
 	}
-	for (i; i < (float)MAX_HP; i += MAX_HP / 10) {
+	for (i; i < MAX_HP; i += (MAX_HP / 10)) {
 		cout << "♡";
 	}
 	cout << HP << '/' << MAX_HP << endl;
 	cout << "에너지: ";
-	for (i = MAX_ENERGY / 10; i < (float)energy; i += (float)(MAX_ENERGY / 10)) {
+	for (i = 0.0f; i < energy; i += MAX_ENERGY / 10) {
 		cout << "■";
 	}
-	for (i; i < (float)MAX_ENERGY; i+=(float)(MAX_HP / 10)) {
+	for (i; i < MAX_ENERGY; i+=MAX_HP / 10) {
 		cout << "□";
 	}
 	cout << energy << '/' << MAX_ENERGY << endl;
@@ -65,10 +65,10 @@ void Game::Stat(int eHp, int eAtk, int eDfs, int mEhp, string eName){
 	cout << '<' << eName << ">\n";
 	cout << "생명력: ";
 	
-	for (i = (float)(mEhp / 10); i < (float)eHp ; i+= (float)(mEhp / 10)) {
+	for (i = 0.0f; i < eHp; i+= (float)mEhp / 10) {
 		cout << "♥";
 	}
-	for (i; i < (float)mEhp; i+=(float)(mEhp/10)) {
+	for (i; i < mEhp; i+= (float)mEhp/10) {
 		cout << "♡";
 	}
 	cout << eHp << '/' << mEhp << endl;
@@ -93,7 +93,7 @@ bool Game::live() {
 	return HP > 0;
 }
 
-void Game::play(int* eHp, int eAtk, int eDfs, string eName){
+void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 	cout << "<" << name << ">\n";
 	cout << "[1] <공격> 에너지 소모: " << MAX_ENERGY / 5 << endl;
 	cout << "[2] <막기> 에너지 소모: " << MAX_ENERGY / 10 << endl;
@@ -115,9 +115,8 @@ void Game::play(int* eHp, int eAtk, int eDfs, string eName){
 				break;
 			}
 			else {
-				*eHp -= attack(eDfs, eName);
-				if (eHp <= 0) return;
-				Damage(eAtk, eName);
+				*eHp -= (float)attack(eDfs, eName);
+				if (*eHp > 0) Damage(eAtk, eName);
 				energy -= MAX_ENERGY / 5;
 				return;
 			}
@@ -159,10 +158,7 @@ void Game::play(int* eHp, int eAtk, int eDfs, string eName){
 		case 5:
 			char yorn;
 			cout << "포기하시겠습니까?(y) ";
-			do
-			{
-				cin >> yorn;
-			} while (yorn != 'y' && yorn != 'Y');
+			cin >> yorn;
 			if (yorn == 'y' || yorn == 'Y') {
 				HP -= HP;
 				return;
@@ -178,14 +174,14 @@ void Game::play(int* eHp, int eAtk, int eDfs, string eName){
 int main()
 {
 	srand((unsigned int)time(NULL)); 
-	string eName[10] = { "과제", "게임의 유혹", "졸음", "희찬", "시우", "원신", "민트초코", "솔로", "커플", "사감쌤" };
+	string eName[10] = { "과제", "시험", "졸음", "희찬", "시우", "원신", "민트초코", "솔로", "커플", "사감쌤" };
 	Game p1(MAX_HP, MAX_ATK, MAX_DFS, MAX_ENERGY);
 	int eN = rand() % 10;
 	string ee(eName[eN]);
-	int eHp = rand() % MAX_HP / 2 + 50;
-	int eAtk = rand() % MAX_ATK / 2 + MAX_ATK;
+	float eHp = rand() % MAX_HP / 2 + 50;
+	int eAtk = rand() % MAX_ATK / 3 + MAX_ATK;
 	int eDfs = rand() % MAX_DFS / 2 + MAX_DFS / 2;
-	int mEhp = eHp;
+	float mEhp = eHp;
 	cout << "앗 야생의 " << ee << "(이)가 나타났다!\n";
 	cout << "press ant key";
 	_getch();
