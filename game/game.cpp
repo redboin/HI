@@ -105,14 +105,12 @@ void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 	cout << "[5] <포기>\n";
 	int engre = MAX_ENERGY / 10;
 	while (1) {
-		int input = 10;
-		while (input < 1 || input > 5) {
-			cout << "선택해 주세요: ";
-			cin >> input;
-		}
+		char input;
+		cout << "선택해 주세요\n";
+		input = _getch();
 		switch (input)
 		{
-		case 1:
+		case '1':
 			if (energy < MAX_ENERGY / 5) {
 				cout << "에너지가 부족합니다!\n";
 				break;
@@ -124,7 +122,7 @@ void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 				return;
 			}
 			break;
-		case 2:
+		case '2':
 			if (energy < MAX_ENERGY / 10) {
 				cout << "에너지가 부족합니다!\n";
 				break;
@@ -135,12 +133,12 @@ void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 				return;
 			}
 			break;
-		case 3:
+		case '3':
 			Damage(eAtk, eName);
 			energy += MAX_ENERGY / 4;
 			if (energy > MAX_ENERGY) energy = MAX_ENERGY;
 			return;
-		case 4:
+		case '4':
 			if (potion <= 0) cout << "남은 포션이 없습니다!\n";
 			else if (HP == MAX_HP) cout << "HP가 최대 입니다!\n";
 			else if (HP + MAX_HP / 4 > MAX_HP) {
@@ -158,7 +156,7 @@ void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 				return;
 			}
 			break;
-		case 5:
+		case '5':
 			char yorn;
 			cout << "포기하시겠습니까?(y) ";
 			cin >> yorn;
