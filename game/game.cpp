@@ -1,6 +1,6 @@
 #include <iostream>
-#include<cstdlib>
-#include<ctime>
+#include <cstdlib>
+#include <ctime>
 #include <string>
 #include <Windows.h>
 #include <conio.h>
@@ -32,7 +32,7 @@ float Game::HP = MAX_HP;
 Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 {
 	cout << "이름을 입력해 주세요: ";
-	cin >> name;
+	getline(cin, name);
 	HP = h;
 	atk = a;
 	dfs = d;
