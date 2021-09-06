@@ -28,7 +28,9 @@ public:
 	bool live();
 	void play(float *eHp, int eAtk, int eDfs, string eName);
 };
+
 float Game::HP = MAX_HP;
+
 Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 {
 	cout << "이름을 입력해 주세요: ";
@@ -64,7 +66,6 @@ void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	cout << "포션 갯수: " << potion << endl << endl;
 	cout << '<' << eName << ">\n";
 	cout << "생명력: ";
-	
 	for (i = 0.0f; i < eHp - 1.0f; i+= (float)mEhp / 10) {
 		cout << "♥";
 	}
