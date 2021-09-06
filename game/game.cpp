@@ -181,7 +181,6 @@ int main()
 	float eHp = rand() % MAX_HP / 2 + 50;
 	int eAtk = rand() % MAX_ATK / 3 + MAX_ATK;
 	int eDfs = rand() % MAX_DFS / 2 + MAX_DFS / 2;
-	eHp = 100.0f;
 	float mEhp = eHp;
 	cout << "¾Ñ ¾ß»ýÀÇ " << ee << "(ÀÌ)°¡ ³ªÅ¸³µ´Ù!\n";
 	cout << "press any key";
