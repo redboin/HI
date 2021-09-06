@@ -39,6 +39,7 @@ Game::Game(int h = MAX_HP, int a = MAX_ATK, int d = MAX_DFS, int e = MAX_ENERGY)
 	energy = e;
 	potion = MAX_POTION;
 }
+
 void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	cout << "<" << name << '>' << endl;
 	cout << "생명력: ";
@@ -58,7 +59,6 @@ void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 		cout << "□";
 	}
 	cout << energy << '/' << MAX_ENERGY << endl;
-
 	cout << "공격력: " << atk << endl;
 	cout << "방어력: " << dfs << endl;
 	cout << "포션 갯수: " << potion << endl << endl;
@@ -76,12 +76,14 @@ void Game::Stat(float eHp, int eAtk, int eDfs, float mEhp, string eName){
 	cout << "방어력: " << eDfs << endl << endl;
 	cout << "--------------------\n";
 } 
+
 void Game::Damage(int dmg, string eName) {
 	int hit = dmg - dfs;
 	if (hit < 0) hit = 0;
 	HP -= hit;
 	cout << "-" <<eName << "의 공격으로 HP가 " << hit << "만큼 감소하였습니다.-\n";
 }
+
 int Game::attack(int eDfs, string eName) {
 	int att = atk - eDfs;
 	if (att < 0) att = 0;
@@ -168,8 +170,6 @@ void Game::play(float* eHp, int eAtk, int eDfs, string eName){
 		}
 	}
 }
-
-
 
 int main()
 {
