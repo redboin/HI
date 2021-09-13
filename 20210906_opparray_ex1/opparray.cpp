@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <windows.h>
+#include <conio.h>
 using namespace std;
 
 class Circle
@@ -19,15 +20,18 @@ public:
 		Ellipse(hdc, x - r, y - r, x + r, y + r);
 	}
 };
-int main(void) 
+int main(void)
 {
 	srand(time(NULL));
 	Circle objArray[10];
-	for (Circle& c : objArray) {
-		c.x = rand() % 500;
-		c.y = rand() % 300;
-		c.radius = rand() % 100;
-	}
-	for (Circle c : objArray) c.draw();
-	
+	do
+	{
+		system("cls");
+		for (Circle& c : objArray) {
+			c.x = rand() % 500;
+			c.y = rand() % 300;
+			c.radius = rand() % 100;
+		}
+		for (Circle c : objArray) c.draw();
+	} while (_getch() != 'f');
 }
