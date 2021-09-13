@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 class Movie
@@ -45,7 +46,7 @@ int main() {
 
 	cout << endl;
 
-	for (int i = 0; i < iA; ++i) {
-		v.at(i).print();
+	for (auto &e : v) {
+		e.print();
 	}
 }
