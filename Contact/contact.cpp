@@ -8,26 +8,22 @@ class Contact
 private:
 	string name;
 	string number;
-	string adress;
+	string address;
 public:
-	Contact(string name, string number, string adress) {
-		this->name = name;
-		this->number = number;
-		this->adress = adress;
-	}
+	Contact(string _name, string _number, string _address) : name{ _name }, number{ _number }, address{ _address } {	}
 	string getname() { return name; }
 	void print() { cout << "전화번호 : " << number << endl; }
 };
 
 int main() {
 	int iChoose;
-	string name, number, adress;
+	string name, number, address;
 
 	vector<Contact> v;
 	
 	do 
 	{
-		cout << "추가 (1) / 탐색(2) : ";
+		cout << "종료 (0) / 추가 (1) / 탐색(2) : ";
 		cin >> iChoose;
 		if (iChoose == 1)
 		{
@@ -37,8 +33,8 @@ int main() {
 			cout << "전화번호를 입력하시오 : ";
 			getline(cin, number);
 			cout << "주소를 입력하시오 : ";
-			getline(cin, adress);
-			Contact c(name, number, adress);
+			getline(cin, address);
+			Contact c(name, number, address);
 			v.push_back(c);
 
 		}
