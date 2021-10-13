@@ -13,5 +13,4 @@ void f(string* p)
 	
 int main() {
 	cout << __cplusplus;
-	return 0;
 }
