@@ -67,6 +67,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "explicittttt", "explicitttt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "copyy", "copyy\copyy.vcxproj", "{57F44DFA-C51B-4C54-921B-8DFAEDBE4D8C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "person", "person\person.vcxproj", "{292CAD11-B273-426F-B68B-3C6D05C7D18C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -251,6 +253,14 @@ Global
 		{57F44DFA-C51B-4C54-921B-8DFAEDBE4D8C}.Release|x64.Build.0 = Release|x64
 		{57F44DFA-C51B-4C54-921B-8DFAEDBE4D8C}.Release|x86.ActiveCfg = Release|Win32
 		{57F44DFA-C51B-4C54-921B-8DFAEDBE4D8C}.Release|x86.Build.0 = Release|Win32
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Debug|x64.ActiveCfg = Debug|x64
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Debug|x64.Build.0 = Debug|x64
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Debug|x86.ActiveCfg = Debug|Win32
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Debug|x86.Build.0 = Debug|Win32
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Release|x64.ActiveCfg = Release|x64
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Release|x64.Build.0 = Release|x64
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Release|x86.ActiveCfg = Release|Win32
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -278,6 +288,7 @@ Global
 		{4368F8A4-33DE-4109-B473-FE8947A041D8} = {878DAEC8-4922-44CE-B251-5A5F26A6DE11}
 		{B591AABE-383C-456D-B6D8-813E035DF98C} = {E95DA956-75B6-4AD8-B871-DC1BE1A0E83F}
 		{57F44DFA-C51B-4C54-921B-8DFAEDBE4D8C} = {E95DA956-75B6-4AD8-B871-DC1BE1A0E83F}
+		{292CAD11-B273-426F-B68B-3C6D05C7D18C} = {E95DA956-75B6-4AD8-B871-DC1BE1A0E83F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4451E36E-CBCB-4124-8182-F33E84F190CB}
